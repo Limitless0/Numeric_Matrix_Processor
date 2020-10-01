@@ -13,8 +13,8 @@ public class Main {
         boolean inMenu = true;
 
         while (inMenu) {
-            int choice = menu(scan);
-            switch (choice) {
+            int choiceA = menu(scan);
+            switch (choiceA) {
                 case 1:
                     matrixA = scanInput(scan);
                     matrixB = scanInput(scan);
@@ -42,11 +42,75 @@ public class Main {
                         printMatrix(matrixC);
                     }
                     break;
+                case 4:
+                    int choiceB = transposeMenu(scan);
+                    matrixA = scanInput(scan);
+                    switch (choiceB) {
+                        case 1:
+                            matrixB = transpose(matrixA);
+                            printMatrix(matrixB);
+                            break;
+                        case 2:
+                            matrixB = flipVertical(matrixA);
+                            matrixC = transpose(matrixB);
+                            matrixA = flipVertical(matrixC);
+                            printMatrix(matrixA);
+                            break;
+                        case 4:
+                            matrixB = flipVertical(matrixA);
+                            printMatrix(matrixB);
+                            break;
+                        case 3:
+                            matrixB = flipHorizontal(matrixA);
+                            printMatrix(matrixB);
+                            break;
+
+                    }
                 case 0:
                     inMenu = false;
 
             }
         }
+    }
+
+    private static double[][] flipVertical(double[][] matA) {
+        double[][] matB = new double[matA.length][matA[0].length];
+        for (int ii = 0; ii < matA.length; ii++) {
+            for (int jj = 0; jj < matA[0].length; jj++) {
+                matB[matA.length - ii - 1][jj] = matA[ii][jj];
+            }
+        }
+        return matB;
+    }
+
+    private static double[][] flipHorizontal(double[][] matA) {
+        double[][] matB = new double[matA.length][matA[0].length];
+        for (int ii = 0; ii < matA.length; ii++) {
+            for (int jj = 0; jj < matA[0].length; jj++) {
+                matB[ii][matA[0].length - jj - 1] = matA[ii][jj];
+            }
+
+        }
+        return matB;
+    }
+
+    private static double[][] transpose(double[][] matA) {
+        double[][] matB = new double[matA[0].length][matA.length];
+
+        for (int ii = 0; ii < matA.length; ii++) {
+            for (int jj = 0; jj < matA[0].length; jj++) {
+                matB[jj][ii] = matA[ii][jj];
+            }
+        }
+        return matB;
+    }
+
+    static int transposeMenu(Scanner scan) {
+        System.out.println("Normal Transpose");
+        System.out.println("Secondary Diagonal Transpose");
+        System.out.println("Horizontal Transpose");
+        System.out.println("Vertical Transpose");
+        return scan.nextInt();
     }
 
     static double[][] dotProduct(double[][] matA, double[][] matB) {
@@ -57,27 +121,26 @@ public class Main {
             return null;
         }
 
-        double[][] matC = new double[matA.length][matB.length];
-
-        for (int ii = 0; ii < matA.length; ii++) {
-            for (int jj = 0; jj < matB.length; jj++) {
+        double[][] matC = new double[matA.length][matB[0].length];
+        for (int nn = 0; nn < matA.length; nn++) {
+            for (int kk = 0; kk < matB[0].length; kk++) {
                 double sum = 0;
-                for (int kk = 0; kk < matB.length; kk++) {
-
-                    sum += matA[ii][kk]
-                            * matB[kk][jj];
-
+                for (int mm = 0; mm < matB.length; mm++) {
+                    sum += matA[nn][mm] * matB[mm][kk];
                 }
-                matC[ii][jj] = sum;
+                matC[nn][kk] = sum;
             }
         }
         return matC;
     }
 
+
+
     static int menu(Scanner scan) {
         System.out.println("1- Add Matrices");
         System.out.println("2- Multiply by Constant");
         System.out.println("3- Multiply Matrices");
+        System.out.println("4- Transpose");
         System.out.println("0- Exit");
         return scan.nextInt();
     }

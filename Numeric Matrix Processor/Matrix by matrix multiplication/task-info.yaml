@@ -302,16 +302,9 @@ files:
     }
   learner_created: false
 feedback_link: https://hyperskill.org/projects/60/stages/325/implement
-status: Failed
+status: Solved
 feedback:
-  message: "Wrong answer in test #6\n\nChecking if matrices multiplication algorithm\
-    \ is correct\n\nPlease find below the output of your program during this failed\
-    \ test.\nNote that the &#39;&gt;&#39; character indicates the beginning of the\
-    \ input line.\n\n---\n\n1- Add Matrices\n2- Multiply by Constant\n3- Multiply\
-    \ Matrices\n0- Exit\n&gt; 3\nEnter matrix size:\n&gt; 2 3\nEnter matrix:\n&gt;\
-    \ 1 0 17\n&gt; 15 19 7\nEnter matrix size:\n&gt; 3 4\nEnter matrix:\n&gt; 5 6\
-    \ 78 9\n&gt; 29 31 47 1\n&gt; 14 17 0 3\nThe result is:\n243.0 295.0 78.0 \n724.0\
-    \ 798.0 2063.0 \n1- Add Matrices\n2- Multiply by Constant\n3- Multiply Matrices\n\
-    0- Exit\n&gt; 0"
-  time: Thu, 01 Oct 2020 08:18:01 UTC
-record: -1
+  message: Congratulations! Continue on <a href="https://hyperskill.org/projects/60/stages/325/implement">JetBrains
+    Academy</a>
+  time: Thu, 01 Oct 2020 08:37:23 UTC
+record: 3
