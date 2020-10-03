@@ -66,6 +66,26 @@ public class Main {
                             break;
 
                     }
+                    break;
+                case 5:
+                    matrixA = scanInput(scan);
+                    Double det = determinant(matrixA);
+                    if (det == null) {
+                        System.out.println("Determinant only defined for square matrices");
+                    } else {
+                        System.out.println("Determinant is: ");
+                        System.out.println(det);
+                    }
+                    break;
+                case 6:
+                    matrixA = scanInput(scan);
+                    matrixB = inverse(matrixA);
+                    if (matrixB == null) {
+                        System.out.println("This matrix has no inverse");
+                    } else {
+                        printMatrix(matrixB);
+                    }
+                    break;
                 case 0:
                     inMenu = false;
 
@@ -73,7 +93,70 @@ public class Main {
         }
     }
 
-    private static double[][] flipVertical(double[][] matA) {
+    //((-1) ^ ii + jj ) * minor
+
+    static double[][] inverse(double[][] mat) {
+        double det = determinant(mat);
+        if (mat.length != mat[0].length) {
+            return null;
+        }
+        if (det == 0) {
+            return null;
+        }
+        double invDet = (1 / det);
+        double[][] matA = new double[mat.length][mat.length];
+        for (int ii = 0; ii < mat.length; ii++) {
+            for (int jj = 0; jj < mat.length; jj++) {
+                matA[ii][jj] = Math.pow(-1, ii + jj)
+                        * determinant(delRowCol(mat, ii, jj));
+            }
+        }
+        double[][] matB = transpose(matA);
+        return multiplyByScalar((int) invDet, matB);
+    }
+
+    static Double determinant(double[][] mat) {
+        if (mat.length != mat[0].length) {
+            return null;
+        }
+        // 2x2
+        if (mat.length == 2) {
+            return (mat[0][0] * mat[1][1]) - (mat[0][1] * mat[1][0]);
+        }
+        double sum = 0; // bigger than 2x2
+        int jj = 0;
+        for (int ii = 0; ii < mat.length; ii++) {
+            sum += (Math.pow((-1), ii + jj)) * mat[ii][jj]
+                    * determinant(delRowCol(mat, ii, jj));
+        }
+        return sum;
+    }
+
+    static double[][] delRowCol(double[][] mat, int ii, int jj) {
+        double[][] matR = new double[mat.length - 1][mat[0].length - 1];
+        int kk = 0;
+        int kdisp = 0;
+        while (kk < mat.length) {
+            if (kk == ii) {
+                kdisp++;
+            }
+            int ll = 0;
+            int ldisp = 0;
+            while (ll < mat[0].length) {
+                if (kk != ii && ll != jj) {
+                    matR[kk - kdisp][ll - ldisp] = mat[kk][ll];
+                }
+                if (jj == ll) {
+                    ldisp++;
+                }
+                ll++;
+            }
+            kk++;
+        }
+        return matR;
+    }
+
+    static double[][] flipVertical(double[][] matA) {
         double[][] matB = new double[matA.length][matA[0].length];
         for (int ii = 0; ii < matA.length; ii++) {
             for (int jj = 0; jj < matA[0].length; jj++) {
@@ -83,7 +166,7 @@ public class Main {
         return matB;
     }
 
-    private static double[][] flipHorizontal(double[][] matA) {
+    static double[][] flipHorizontal(double[][] matA) {
         double[][] matB = new double[matA.length][matA[0].length];
         for (int ii = 0; ii < matA.length; ii++) {
             for (int jj = 0; jj < matA[0].length; jj++) {
@@ -94,7 +177,7 @@ public class Main {
         return matB;
     }
 
-    private static double[][] transpose(double[][] matA) {
+    static double[][] transpose(double[][] matA) {
         double[][] matB = new double[matA[0].length][matA.length];
 
         for (int ii = 0; ii < matA.length; ii++) {
@@ -141,6 +224,8 @@ public class Main {
         System.out.println("2- Multiply by Constant");
         System.out.println("3- Multiply Matrices");
         System.out.println("4- Transpose");
+        System.out.println("5- Calculate Determinant");
+        System.out.println("6- Calculate Inverse");
         System.out.println("0- Exit");
         return scan.nextInt();
     }

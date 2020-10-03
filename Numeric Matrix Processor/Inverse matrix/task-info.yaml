@@ -473,5 +473,18 @@ files:
     }
   learner_created: false
 feedback_link: https://hyperskill.org/projects/60/stages/328/implement
-status: Unchecked
+status: Failed
+feedback:
+  message: "Wrong answer in test #18\n\nChecking if inversion algorithm is correct\n\
+    \nPlease find below the output of your program during this failed test.\nNote\
+    \ that the &#39;&gt;&#39; character indicates the beginning of the input line.\n\
+    \n---\n\n1- Add Matrices\n2- Multiply by Constant\n3- Multiply Matrices\n4- Transpose\n\
+    5- Calculate Determinant\n6- Calculate Inverse\n0- Exit\n&gt; 6\nEnter matrix\
+    \ size:\n&gt; 3 3\nEnter matrix:\n&gt; 0.396796 -0.214938 0.276735\n&gt; 5.19655\
+    \ -2.06983 -0.388886\n&gt; -3.3797 1.50219 0.159794\nThe result is:\n1.0137369812799997\
+    \ 1.800217409688 2.625523136472 \n1.9357620140000007 3.994747598096 6.369502694024001\
+    \ \n3.2432039739999965 0.5214519014400003 1.1825431968799998 \n1- Add Matrices\n\
+    2- Multiply by Constant\n3- Multiply Matrices\n4- Transpose\n5- Calculate Determinant\n\
+    6- Calculate Inverse\n0- Exit\n&gt; 0"
+  time: Sat, 03 Oct 2020 15:04:26 UTC
 record: -1
