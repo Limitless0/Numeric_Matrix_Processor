@@ -112,7 +112,7 @@ public class Main {
             }
         }
         double[][] matB = transpose(matA);
-        return multiplyByScalar((int) invDet, matB);
+        return multiplyByScalar(invDet, matB);
     }
 
     static Double determinant(double[][] mat) {
@@ -230,7 +230,7 @@ public class Main {
         return scan.nextInt();
     }
 
-    static double[][] multiplyByScalar(int scalar, double[][] matrix) {
+    static double[][] multiplyByScalar(double scalar, double[][] matrix) {
 
         double[][] matrixOut = new double[matrix.length][matrix[0].length];
 
